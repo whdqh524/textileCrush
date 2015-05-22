@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "7BDB649A18BCD1FD006B3B02"
-               BuildableName = "CookieCrunch.app"
+               BuildableName = "TextileCrush.app"
                BlueprintName = "CookieCrunch"
                ReferencedContainer = "container:CookieCrunch.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7BDB649A18BCD1FD006B3B02"
-            BuildableName = "CookieCrunch.app"
+            BuildableName = "TextileCrush.app"
             BlueprintName = "CookieCrunch"
             ReferencedContainer = "container:CookieCrunch.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7BDB649A18BCD1FD006B3B02"
-            BuildableName = "CookieCrunch.app"
+            BuildableName = "TextileCrush.app"
             BlueprintName = "CookieCrunch"
             ReferencedContainer = "container:CookieCrunch.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "7BDB649A18BCD1FD006B3B02"
-            BuildableName = "CookieCrunch.app"
+            BuildableName = "TextileCrush.app"
             BlueprintName = "CookieCrunch"
             ReferencedContainer = "container:CookieCrunch.xcodeproj">
          </BuildableReference>

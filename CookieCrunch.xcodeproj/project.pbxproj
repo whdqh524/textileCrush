@@ -55,7 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7BDB649B18BCD1FD006B3B02 /* CookieCrunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookieCrunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BDB649B18BCD1FD006B3B02 /* TextileCrush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextileCrush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BDB649E18BCD1FD006B3B02 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7BDB64A018BCD1FD006B3B02 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		7BDB64A218BCD1FD006B3B02 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -141,7 +141,7 @@
 		7BDB649C18BCD1FD006B3B02 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7BDB649B18BCD1FD006B3B02 /* CookieCrunch.app */,
+				7BDB649B18BCD1FD006B3B02 /* TextileCrush.app */,
 				7BDB64C318BCD1FD006B3B02 /* CookieCrunchTests.xctest */,
 			);
 			name = Products;
@@ -261,7 +261,7 @@
 			);
 			name = CookieCrunch;
 			productName = CookieCrunch;
-			productReference = 7BDB649B18BCD1FD006B3B02 /* CookieCrunch.app */;
+			productReference = 7BDB649B18BCD1FD006B3B02 /* TextileCrush.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7BDB64C218BCD1FD006B3B02 /* CookieCrunchTests */ = {
@@ -494,7 +494,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CookieCrunch/CookieCrunch-Prefix.pch";
 				INFOPLIST_FILE = "CookieCrunch/CookieCrunch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TextileCrush;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WARNING_CFLAGS = (
@@ -515,7 +515,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CookieCrunch/CookieCrunch-Prefix.pch";
 				INFOPLIST_FILE = "CookieCrunch/CookieCrunch-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TextileCrush;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WARNING_CFLAGS = (
