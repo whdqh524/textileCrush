@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  CookieCrunch
+//  wordCrunch
 //
 //  Created by Matthijs on 25-02-14.
 //  Copyright (c) 2014 Razeware LLC. All rights reserved.
@@ -14,10 +14,10 @@
 
 @interface ViewController ()
 
-// The level contains the tiles, the cookies, and most of the gameplay logic.
+// The level contains the tiles, the words, and most of the gameplay logic.
 @property (strong, nonatomic) RWTLevel *level;
 
-// The scene draws the tiles and cookie sprites, and handles swipes.
+// The scene draws the tiles and word sprites, and handles swipes.
 @property (strong, nonatomic) MyScene *scene;
 
 @property (assign, nonatomic) NSUInteger movesLeft;
@@ -64,7 +64,7 @@
   // detects that the player performs a swipe.
   id block = ^(RWTSwap *swap) {
 
-    // While cookies are being matched and new cookies fall down to fill up
+    // While words are being matched and new words fall down to fill up
     // the holes, we don't want the player to tap on anything.
     self.view.userInteractionEnabled = NO;
 
@@ -138,17 +138,17 @@
 }
 
 - (void)shuffle {
-  // Delete the old cookie sprites, but not the tiles.
-  [self.scene removeAllCookieSprites];
+  // Delete the old word sprites, but not the tiles.
+  [self.scene removeAllWordSprites];
 
-  // Fill up the level with new cookies, and create sprites for them.
-  NSSet *newCookies = [self.level shuffle];
-  [self.scene addSpritesForCookies:newCookies];
+  // Fill up the level with new words, and create sprites for them.
+  NSSet *newWords = [self.level shuffle];
+  [self.scene addSpritesForWords:newWords];
 }
 
 - (void)handleMatches {
-  // This is the main loop that removes any matching cookies and fills up the
-  // holes with new cookies. While this happens, the user cannot interact with
+  // This is the main loop that removes any matching words and fills up the
+  // holes with new words. While this happens, the user cannot interact with
   // the app.
 
   // Detect if there are any matches left.
@@ -161,7 +161,7 @@
   }
 
   // First, remove any matches...
-  [self.scene animateMatchedCookies:chains completion:^{
+  [self.scene animateMatchedWords:chains completion:^{
 
     // Add the new scores to the total.
     for (RWTChain *chain in chains) {
@@ -169,13 +169,13 @@
     }
     [self updateLabels];
 
-    // ...then shift down any cookies that have a hole below them...
+    // ...then shift down any words that have a hole below them...
     NSArray *columns = [self.level fillHoles];
-    [self.scene animateFallingCookies:columns completion:^{
+    [self.scene animateFallingWords:columns completion:^{
 
-      // ...and finally, add new cookies at the top.
-      NSArray *columns = [self.level topUpCookies];
-      [self.scene animateNewCookies:columns completion:^{
+      // ...and finally, add new words at the top.
+      NSArray *columns = [self.level topUpwords];
+      [self.scene animateNewWords:columns completion:^{
 
         // Keep repeating this cycle until there are no more matches.
         [self handleMatches];

@@ -1,6 +1,6 @@
 //
-//  CookieCrunchTests.m
-//  CookieCrunchTests
+//  wordCrunchTests.m
+//  wordCrunchTests
 //
 //  Created by Matthijs on 25-02-14.
 //  Copyright (c) 2014 Razeware LLC. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface CookieCrunchTests : XCTestCase
+@interface wordCrunchTests : XCTestCase
 
 @end
 
-@implementation CookieCrunchTests
+@implementation wordCrunchTests
 
 - (void)setUp
 {

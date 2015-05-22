@@ -2,22 +2,22 @@
 #import "RWTChain.h"
 
 @implementation RWTChain {
-  NSMutableArray *_cookies;
+  NSMutableArray *_words;
 }
 
-- (void)addCookie:(RWTCookie *)cookie {
-  if (_cookies == nil) {
-    _cookies = [NSMutableArray array];
+- (void)addword:(RWTWord *)word {
+  if (_words == nil) {
+    _words = [NSMutableArray array];
   }
-  [_cookies addObject:cookie];
+  [_words addObject:word];
 }
 
-- (NSArray *)cookies {
-  return _cookies;
+- (NSArray *)words {
+  return _words;
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"type:%ld cookies:%@", (long)self.chainType, self.cookies];
+  return [NSString stringWithFormat:@"type:%ld words:%@", (long)self.chainType, self.words];
 }
 
 @end

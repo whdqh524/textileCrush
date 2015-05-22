@@ -14,15 +14,15 @@
 // for this.
 @property (copy, nonatomic) void (^swipeHandler)(RWTSwap *swap);
 
-- (void)addSpritesForCookies:(NSSet *)cookies;
+- (void)addSpritesForWords:(NSSet *)words;
 - (void)addTiles;
-- (void)removeAllCookieSprites;
+- (void)removeAllWordSprites;
 
 - (void)animateSwap:(RWTSwap *)swap completion:(dispatch_block_t)completion;
 - (void)animateInvalidSwap:(RWTSwap *)swap completion:(dispatch_block_t)completion;
-- (void)animateMatchedCookies:(NSSet *)chains completion:(dispatch_block_t)completion;
-- (void)animateFallingCookies:(NSArray *)columns completion:(dispatch_block_t)completion;
-- (void)animateNewCookies:(NSArray *)columns completion:(dispatch_block_t)completion;
+- (void)animateMatchedWords:(NSSet *)chains completion:(dispatch_block_t)completion;
+- (void)animateFallingWords:(NSArray *)columns completion:(dispatch_block_t)completion;
+- (void)animateNewWords:(NSArray *)columns completion:(dispatch_block_t)completion;
 - (void)animateGameOver;
 - (void)animateBeginGame;
 

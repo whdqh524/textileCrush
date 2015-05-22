@@ -1,6 +1,6 @@
 //
 //  ViewController.h
-//  CookieCrunch
+//  wordCrunch
 //
 
 //  Copyright (c) 2014 Razeware LLC. All rights reserved.

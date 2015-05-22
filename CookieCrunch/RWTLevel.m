@@ -1,6 +1,6 @@
 //
 //  RWTLevel.m
-//  CookieCrunch
+//  wordCrunch
 //
 //  Created by Matthijs on 26-02-14.
 //  Copyright (c) 2014 Razeware LLC. All rights reserved.
@@ -25,8 +25,8 @@
   // The 2D array that contains the layout of the level.
   RWTTile *_tiles[NumColumns][NumRows];
 
-  // The 2D array that keeps track of where the RWTCookies are.
-  RWTCookie *_cookies[NumColumns][NumRows];
+  // The 2D array that keeps track of where the RWTWords are.
+  RWTWord *_words[NumColumns][NumRows];
 }
 
 #pragma mark - Level Loading
@@ -94,11 +94,11 @@
   NSSet *set;
 
   do {
-    // Removes the old cookies and fills up the level with all new ones.
-    set = [self createInitialCookies];
+    // Removes the old words and fills up the level with all new ones.
+    set = [self createInitialwords];
 
-    // At the start of each turn we need to detect which cookies the player can
-    // actually swap. If the player tries to swap two cookies that are not in
+    // At the start of each turn we need to detect which words the player can
+    // actually swap. If the player tries to swap two words that are not in
     // this set, then the game does not accept this as a valid move.
     // This also tells you whether no more swaps are possible and the game needs
     // to automatically reshuffle.
@@ -113,7 +113,7 @@
   return set;
 }
 
-- (NSSet *)createInitialCookies {
+- (NSSet *)createInitialwords {
 
   NSMutableSet *set = [NSMutableSet set];
 
@@ -122,42 +122,42 @@
   for (NSInteger row = 0; row < NumRows; row++) {
     for (NSInteger column = 0; column < NumColumns; column++) {
 
-      // Only make a new cookie if there is a tile at this spot.
+      // Only make a new word if there is a tile at this spot.
       if (_tiles[column][row] != nil) {
 
-        // Pick the cookie type at random, and make sure that this never
+        // Pick the word type at random, and make sure that this never
         // creates a chain of 3 or more. We want there to be 0 matches in
         // the initial state.
-        NSUInteger cookieType;
+        NSUInteger wordType;
         do {
-          cookieType = arc4random_uniform(NumCookieTypes) + 1;
+          wordType = arc4random_uniform(NumWordTypes) + 1;
         }
         while ((column >= 2 &&
-                _cookies[column - 1][row].cookieType == cookieType &&
-                _cookies[column - 2][row].cookieType == cookieType)
+                _words[column - 1][row].wordType == wordType &&
+                _words[column - 2][row].wordType == wordType)
             ||
                (row >= 2 &&
-                _cookies[column][row - 1].cookieType == cookieType &&
-                _cookies[column][row - 2].cookieType == cookieType));
+                _words[column][row - 1].wordType == wordType &&
+                _words[column][row - 2].wordType == wordType));
 
-        // Create a new cookie and add it to the 2D array.
-        RWTCookie *cookie = [self createCookieAtColumn:column row:row withType:cookieType];
+        // Create a new word and add it to the 2D array.
+        RWTWord *word = [self createwordAtColumn:column row:row withType:wordType];
 
-        // Also add the cookie to the set so we can tell our caller about it.
-        [set addObject:cookie];
+        // Also add the word to the set so we can tell our caller about it.
+        [set addObject:word];
       }
     }
   }
   return set;
 }
 
-- (RWTCookie *)createCookieAtColumn:(NSInteger)column row:(NSInteger)row withType:(NSUInteger)cookieType {
-  RWTCookie *cookie = [[RWTCookie alloc] init];
-  cookie.cookieType = cookieType;
-  cookie.column = column;
-  cookie.row = row;
-  _cookies[column][row] = cookie;
-  return cookie;
+- (RWTWord *)createwordAtColumn:(NSInteger)column row:(NSInteger)row withType:(NSUInteger)wordType {
+  RWTWord *word = [[RWTWord alloc] init];
+  word.wordType = wordType;
+  word.column = column;
+  word.row = row;
+  _words[column][row] = word;
+  return word;
 }
 
 - (void)resetComboMultiplier {
@@ -173,60 +173,60 @@
   for (NSInteger row = 0; row < NumRows; row++) {
     for (NSInteger column = 0; column < NumColumns; column++) {
 
-      RWTCookie *cookie = _cookies[column][row];
-      if (cookie != nil) {
+      RWTWord *word = _words[column][row];
+      if (word != nil) {
 
-        // Is it possible to swap this cookie with the one on the right?
+        // Is it possible to swap this word with the one on the right?
         // Note: don't need to check the last column.
         if (column < NumColumns - 1) {
 
-          // Have a cookie in this spot? If there is no tile, there is no cookie.
-          RWTCookie *other = _cookies[column + 1][row];
+          // Have a word in this spot? If there is no tile, there is no word.
+          RWTWord *other = _words[column + 1][row];
           if (other != nil) {
             // Swap them
-            _cookies[column][row] = other;
-            _cookies[column + 1][row] = cookie;
+            _words[column][row] = other;
+            _words[column + 1][row] = word;
             
-            // Is either cookie now part of a chain?
+            // Is either word now part of a chain?
             if ([self hasChainAtColumn:column + 1 row:row] ||
                 [self hasChainAtColumn:column row:row]) {
 
               RWTSwap *swap = [[RWTSwap alloc] init];
-              swap.cookieA = cookie;
-              swap.cookieB = other;
+              swap.wordA = word;
+              swap.wordB = other;
               [set addObject:swap];
             }
 
             // Swap them back
-            _cookies[column][row] = cookie;
-            _cookies[column + 1][row] = other;
+            _words[column][row] = word;
+            _words[column + 1][row] = other;
           }
         }
 
-        // Is it possible to swap this cookie with the one above?
+        // Is it possible to swap this word with the one above?
         // Note: don't need to check the last row.
         if (row < NumRows - 1) {
 
-          // Have a cookie in this spot? If there is no tile, there is no cookie.
-          RWTCookie *other = _cookies[column][row + 1];
+          // Have a word in this spot? If there is no tile, there is no word.
+          RWTWord *other = _words[column][row + 1];
           if (other != nil) {
             // Swap them
-            _cookies[column][row] = other;
-            _cookies[column][row + 1] = cookie;
+            _words[column][row] = other;
+            _words[column][row + 1] = word;
 
-            // Is either cookie now part of a chain?
+            // Is either word now part of a chain?
             if ([self hasChainAtColumn:column row:row + 1] ||
                 [self hasChainAtColumn:column row:row]) {
 
               RWTSwap *swap = [[RWTSwap alloc] init];
-              swap.cookieA = cookie;
-              swap.cookieB = other;
+              swap.wordA = word;
+              swap.wordB = other;
               [set addObject:swap];
             }
 
             // Swap them back
-            _cookies[column][row] = cookie;
-            _cookies[column][row + 1] = other;
+            _words[column][row] = word;
+            _words[column][row + 1] = other;
           }
         }
       }
@@ -237,16 +237,16 @@
 }
 
 - (BOOL)hasChainAtColumn:(NSInteger)column row:(NSInteger)row {
-  NSUInteger cookieType = _cookies[column][row].cookieType;
+  NSUInteger wordType = _words[column][row].wordType;
 
   NSUInteger horzLength = 1;
-  for (NSInteger i = column - 1; i >= 0 && _cookies[i][row].cookieType == cookieType; i--, horzLength++) ;
-  for (NSInteger i = column + 1; i < NumColumns && _cookies[i][row].cookieType == cookieType; i++, horzLength++) ;
+  for (NSInteger i = column - 1; i >= 0 && _words[i][row].wordType == wordType; i--, horzLength++) ;
+  for (NSInteger i = column + 1; i < NumColumns && _words[i][row].wordType == wordType; i++, horzLength++) ;
   if (horzLength >= 3) return YES;
 
   NSUInteger vertLength = 1;
-  for (NSInteger i = row - 1; i >= 0 && _cookies[column][i].cookieType == cookieType; i--, vertLength++) ;
-  for (NSInteger i = row + 1; i < NumRows && _cookies[column][i].cookieType == cookieType; i++, vertLength++) ;
+  for (NSInteger i = row - 1; i >= 0 && _words[column][i].wordType == wordType; i--, vertLength++) ;
+  for (NSInteger i = row + 1; i < NumRows && _words[column][i].wordType == wordType; i++, vertLength++) ;
   return (vertLength >= 3);
 }
 
@@ -254,20 +254,20 @@
 
 - (void)performSwap:(RWTSwap *)swap {
   // Need to make temporary copies of these because they get overwritten.
-  NSInteger columnA = swap.cookieA.column;
-  NSInteger rowA = swap.cookieA.row;
-  NSInteger columnB = swap.cookieB.column;
-  NSInteger rowB = swap.cookieB.row;
+  NSInteger columnA = swap.wordA.column;
+  NSInteger rowA = swap.wordA.row;
+  NSInteger columnB = swap.wordB.column;
+  NSInteger rowB = swap.wordB.row;
 
-  // Swap the cookies. We need to update the array as well as the column
-  // and row properties of the RWTCookie objects, or they go out of sync!
-  _cookies[columnA][rowA] = swap.cookieB;
-  swap.cookieB.column = columnA;
-  swap.cookieB.row = rowA;
+  // Swap the words. We need to update the array as well as the column
+  // and row properties of the RWTWord objects, or they go out of sync!
+  _words[columnA][rowA] = swap.wordB;
+  swap.wordB.column = columnA;
+  swap.wordB.row = rowA;
 
-  _cookies[columnB][rowB] = swap.cookieA;
-  swap.cookieA.column = columnB;
-  swap.cookieA.row = rowB;
+  _words[columnB][rowB] = swap.wordA;
+  swap.wordA.column = columnB;
+  swap.wordA.row = rowB;
 }
 
 #pragma mark - Detecting Matches
@@ -277,12 +277,12 @@
   NSSet *verticalChains = [self detectVerticalMatches];
 
   // Note: to detect more advanced patterns such as an L shape, you can see
-  // whether a cookie is in both the horizontal & vertical chains sets and
+  // whether a word is in both the horizontal & vertical chains sets and
   // whether it is the first or last in the array (at a corner). Then you
   // create a new RWTChain object with the new type and remove the other two.
 
-  [self removeCookies:horizontalChains];
-  [self removeCookies:verticalChains];
+  [self removewords:horizontalChains];
+  [self removewords:verticalChains];
 
   [self calculateScores:horizontalChains];
   [self calculateScores:verticalChains];
@@ -292,8 +292,8 @@
 
 - (NSSet *)detectHorizontalMatches {
 
-  // Contains the RWTCookie objects that were part of a horizontal chain.
-  // These cookies must be removed.
+  // Contains the RWTWord objects that were part of a horizontal chain.
+  // These words must be removed.
   NSMutableSet *set = [NSMutableSet set];
 
   for (NSInteger row = 0; row < NumRows; row++) {
@@ -302,29 +302,29 @@
     // Note: for-loop without increment.
     for (NSInteger column = 0; column < NumColumns - 2; ) {
 
-      // If there is a cookie/tile at this position...
-      if (_cookies[column][row] != nil) {
-        NSUInteger matchType = _cookies[column][row].cookieType;
+      // If there is a word/tile at this position...
+      if (_words[column][row] != nil) {
+        NSUInteger matchType = _words[column][row].wordType;
 
         // And the next two columns have the same type...
-        if (_cookies[column + 1][row].cookieType == matchType
-         && _cookies[column + 2][row].cookieType == matchType) {
+        if (_words[column + 1][row].wordType == matchType
+         && _words[column + 2][row].wordType == matchType) {
 
-          // ...then add all the cookies from this chain into the set.
+          // ...then add all the words from this chain into the set.
           RWTChain *chain = [[RWTChain alloc] init];
           chain.chainType = ChainTypeHorizontal;
           do {
-            [chain addCookie:_cookies[column][row]];
+            [chain addword:_words[column][row]];
             column += 1;
           }
-          while (column < NumColumns && _cookies[column][row].cookieType == matchType);
+          while (column < NumColumns && _words[column][row].wordType == matchType);
 
           [set addObject:chain];
           continue;
         }
       }
 
-      // Cookie did not match or empty tile, so skip over it.
+      // word did not match or empty tile, so skip over it.
       column += 1;
     }
   }
@@ -337,19 +337,19 @@
 
   for (NSInteger column = 0; column < NumColumns; column++) {
     for (NSInteger row = 0; row < NumRows - 2; ) {
-      if (_cookies[column][row] != nil) {
-        NSUInteger matchType = _cookies[column][row].cookieType;
+      if (_words[column][row] != nil) {
+        NSUInteger matchType = _words[column][row].wordType;
 
-        if (_cookies[column][row + 1].cookieType == matchType
-         && _cookies[column][row + 2].cookieType == matchType) {
+        if (_words[column][row + 1].wordType == matchType
+         && _words[column][row + 2].wordType == matchType) {
 
           RWTChain *chain = [[RWTChain alloc] init];
           chain.chainType = ChainTypeVertical;
           do {
-            [chain addCookie:_cookies[column][row]];
+            [chain addword:_words[column][row]];
             row += 1;
           }
-          while (row < NumRows && _cookies[column][row].cookieType == matchType);
+          while (row < NumRows && _words[column][row].wordType == matchType);
 
           [set addObject:chain];
           continue;
@@ -361,10 +361,10 @@
   return set;
 }
 
-- (void)removeCookies:(NSSet *)chains {
+- (void)removewords:(NSSet *)chains {
   for (RWTChain *chain in chains) {
-    for (RWTCookie *cookie in chain.cookies) {
-      _cookies[cookie.column][cookie.row] = nil;
+    for (RWTWord *word in chain.words) {
+      _words[word.column][word.row] = nil;
     }
   }
 }
@@ -372,7 +372,7 @@
 - (void)calculateScores:(NSSet *)chains {
   // 3-chain is 60 pts, 4-chain is 120, 5-chain is 180, and so on
   for (RWTChain *chain in chains) {
-    chain.score = 60 * ([chain.cookies count] - 2) * self.comboMultiplier;
+    chain.score = 60 * ([chain.words count] - 2) * self.comboMultiplier;
     self.comboMultiplier++;
   }
 }
@@ -391,27 +391,27 @@
     NSMutableArray *array;
     for (NSInteger row = 0; row < NumRows; row++) {
 
-      // If there is a tile at this position but no cookie, then there's a hole.
-      if (_tiles[column][row] != nil && _cookies[column][row] == nil) {
+      // If there is a tile at this position but no word, then there's a hole.
+      if (_tiles[column][row] != nil && _words[column][row] == nil) {
 
-        // Scan upward to find a cookie.
+        // Scan upward to find a word.
         for (NSInteger lookup = row + 1; lookup < NumRows; lookup++) {
-          RWTCookie *cookie = _cookies[column][lookup];
-          if (cookie != nil) {
-            // Swap that cookie with the hole.
-            _cookies[column][lookup] = nil;
-            _cookies[column][row] = cookie;
-            cookie.row = row;
+          RWTWord *word = _words[column][lookup];
+          if (word != nil) {
+            // Swap that word with the hole.
+            _words[column][lookup] = nil;
+            _words[column][row] = word;
+            word.row = row;
 
-            // For each column, we return an array with the cookies that have
-            // fallen down. Cookies that are lower on the screen are first in
+            // For each column, we return an array with the words that have
+            // fallen down. words that are lower on the screen are first in
             // the array. We need an array to keep this order intact, so the
             // animation code can apply the correct kind of delay.
             if (array == nil) {
               array = [NSMutableArray array];
               [columns addObject:array];
             }
-            [array addObject:cookie];
+            [array addObject:word];
 
             // Don't need to scan up any further.
             break;
@@ -423,44 +423,44 @@
   return columns;
 }
 
-- (NSArray *)topUpCookies {
+- (NSArray *)topUpwords {
   NSMutableArray *columns = [NSMutableArray array];
-  NSUInteger cookieType = 0;
+  NSUInteger wordType = 0;
 
-  // Detect where we have to add the new cookies. If a column has X holes,
-  // then it also needs X new cookies. The holes are all on the top of the
+  // Detect where we have to add the new words. If a column has X holes,
+  // then it also needs X new words. The holes are all on the top of the
   // column now, but the fact that there may be gaps in the tiles makes this
   // a little trickier.
   for (NSInteger column = 0; column < NumColumns; column++) {
 
     // This time scan from top to bottom. We can end when we've found the
-    // first cookie.
+    // first word.
     NSMutableArray *array;
-    for (NSInteger row = NumRows - 1; row >= 0 && _cookies[column][row] == nil; row--) {
+    for (NSInteger row = NumRows - 1; row >= 0 && _words[column][row] == nil; row--) {
 
       // Found a hole?
       if (_tiles[column][row] != nil) {
 
-        // Randomly create a new cookie type. The only restriction is that
+        // Randomly create a new word type. The only restriction is that
         // it cannot be equal to the previous type. This prevents too many
         // "freebie" matches.
-        NSUInteger newCookieType;
+        NSUInteger newwordType;
         do {
-          newCookieType = arc4random_uniform(NumCookieTypes) + 1;
-        } while (newCookieType == cookieType);
-        cookieType = newCookieType;
+          newwordType = arc4random_uniform(NumWordTypes) + 1;
+        } while (newwordType == wordType);
+        wordType = newwordType;
 
-        // Create a new cookie.
-        RWTCookie *cookie = [self createCookieAtColumn:column row:row withType:cookieType];
+        // Create a new word.
+        RWTWord *word = [self createwordAtColumn:column row:row withType:wordType];
 
-        // Add the cookie to the array for this column.
+        // Add the word to the array for this column.
         // Note that we only allocate an array if a column actually has holes.
         // This cuts down on unnecessary allocations.
         if (array == nil) {
           array = [NSMutableArray array];
           [columns addObject:array];
         }
-        [array addObject:cookie];
+        [array addObject:word];
       }
     }
   }
@@ -476,11 +476,11 @@
   return _tiles[column][row];
 }
 
-- (RWTCookie *)cookieAtColumn:(NSInteger)column row:(NSInteger)row {
+- (RWTWord *)wordAtColumn:(NSInteger)column row:(NSInteger)row {
   NSAssert1(column >= 0 && column < NumColumns, @"Invalid column: %ld", (long)column);
   NSAssert1(row >= 0 && row < NumRows, @"Invalid row: %ld", (long)row);
 
-  return _cookies[column][row];
+  return _words[column][row];
 }
 
 - (BOOL)isPossibleSwap:(RWTSwap *)swap {

@@ -1,5 +1,5 @@
 
-@class RWTCookie;
+@class RWTWord;
 
 typedef NS_ENUM(NSUInteger, ChainType) {
   ChainTypeHorizontal,
@@ -12,8 +12,8 @@ typedef NS_ENUM(NSUInteger, ChainType) {
 
 @interface RWTChain : NSObject
 
-// The RWTCookies that are part of this chain.
-@property (strong, nonatomic, readonly) NSArray *cookies;
+// The RWTWords that are part of this chain.
+@property (strong, nonatomic, readonly) NSArray *words;
 
 // Whether this chain is horizontal or vertical.
 @property (assign, nonatomic) ChainType chainType;
@@ -21,6 +21,6 @@ typedef NS_ENUM(NSUInteger, ChainType) {
 // How many points this chain is worth.
 @property (assign, nonatomic) NSUInteger score;
 
-- (void)addCookie:(RWTCookie *)cookie;
+- (void)addword:(RWTWord *)word;
 
 @end

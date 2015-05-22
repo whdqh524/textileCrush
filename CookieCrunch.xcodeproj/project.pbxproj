@@ -24,7 +24,6 @@
 		7BDB64CF18BCD1FD006B3B02 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB64CD18BCD1FD006B3B02 /* InfoPlist.strings */; };
 		7BDB64D118BCD1FD006B3B02 /* CookieCrunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB64D018BCD1FD006B3B02 /* CookieCrunchTests.m */; };
 		7BDB64DB18BCD2FC006B3B02 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB64DA18BCD2FC006B3B02 /* Sprites.atlas */; };
-		7BDB64DE18BCD631006B3B02 /* RWTCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB64DD18BCD631006B3B02 /* RWTCookie.m */; };
 		7BDB64E118BDCE84006B3B02 /* RWTLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB64E018BDCE84006B3B02 /* RWTLevel.m */; };
 		7BDB64E818BDE7A0006B3B02 /* Level_0.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB64E318BDE7A0006B3B02 /* Level_0.json */; };
 		7BDB64E918BDE7A0006B3B02 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB64E418BDE7A0006B3B02 /* Level_1.json */; };
@@ -41,6 +40,8 @@
 		7BDB64FF18BE18A6006B3B02 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB64F918BE18A6006B3B02 /* Scrape.wav */; };
 		7BDB650218BE23A5006B3B02 /* RWTChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB650118BE23A5006B3B02 /* RWTChain.m */; };
 		7BDB650418BE6E24006B3B02 /* Grid.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7BDB650318BE6E24006B3B02 /* Grid.atlas */; };
+		F323FE061B0EB623009D38BC /* RWTWord.m in Sources */ = {isa = PBXBuildFile; fileRef = F323FE051B0EB623009D38BC /* RWTWord.m */; };
+		F323FE081B0EFDB1009D38BC /* Moebius_Bold_kor.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F323FE071B0EFD84009D38BC /* Moebius_Bold_kor.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,8 +78,6 @@
 		7BDB64CE18BCD1FD006B3B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7BDB64D018BCD1FD006B3B02 /* CookieCrunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CookieCrunchTests.m; sourceTree = "<group>"; };
 		7BDB64DA18BCD2FC006B3B02 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
-		7BDB64DC18BCD631006B3B02 /* RWTCookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWTCookie.h; sourceTree = "<group>"; };
-		7BDB64DD18BCD631006B3B02 /* RWTCookie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWTCookie.m; sourceTree = "<group>"; };
 		7BDB64DF18BDCE84006B3B02 /* RWTLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWTLevel.h; sourceTree = "<group>"; };
 		7BDB64E018BDCE84006B3B02 /* RWTLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWTLevel.m; sourceTree = "<group>"; };
 		7BDB64E318BDE7A0006B3B02 /* Level_0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_0.json; sourceTree = "<group>"; };
@@ -99,6 +98,9 @@
 		7BDB650018BE23A5006B3B02 /* RWTChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWTChain.h; sourceTree = "<group>"; };
 		7BDB650118BE23A5006B3B02 /* RWTChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWTChain.m; sourceTree = "<group>"; };
 		7BDB650318BE6E24006B3B02 /* Grid.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Grid.atlas; sourceTree = "<group>"; };
+		F323FE041B0EB623009D38BC /* RWTWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWTWord.h; sourceTree = "<group>"; };
+		F323FE051B0EB623009D38BC /* RWTWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWTWord.m; sourceTree = "<group>"; };
+		F323FE071B0EFD84009D38BC /* Moebius_Bold_kor.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Moebius_Bold_kor.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,8 +175,8 @@
 				7BDB64E218BDE7A0006B3B02 /* Levels */,
 				7BDB64F318BE18A6006B3B02 /* Sounds */,
 				7BDB64A718BCD1FD006B3B02 /* Supporting Files */,
-				7BDB64DC18BCD631006B3B02 /* RWTCookie.h */,
-				7BDB64DD18BCD631006B3B02 /* RWTCookie.m */,
+				F323FE041B0EB623009D38BC /* RWTWord.h */,
+				F323FE051B0EB623009D38BC /* RWTWord.m */,
 				7BDB64DF18BDCE84006B3B02 /* RWTLevel.h */,
 				7BDB64E018BDCE84006B3B02 /* RWTLevel.m */,
 				7BDB64ED18BDE938006B3B02 /* RWTTile.h */,
@@ -190,6 +192,7 @@
 		7BDB64A718BCD1FD006B3B02 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F323FE071B0EFD84009D38BC /* Moebius_Bold_kor.ttf */,
 				7BDB64A818BCD1FD006B3B02 /* CookieCrunch-Info.plist */,
 				7BDB64A918BCD1FD006B3B02 /* InfoPlist.strings */,
 				7BDB64AC18BCD1FD006B3B02 /* main.m */,
@@ -326,6 +329,7 @@
 				7BDB64FF18BE18A6006B3B02 /* Scrape.wav in Resources */,
 				7BDB64E818BDE7A0006B3B02 /* Level_0.json in Resources */,
 				7BDB64FA18BE18A6006B3B02 /* Chomp.wav in Resources */,
+				F323FE081B0EFDB1009D38BC /* Moebius_Bold_kor.ttf in Resources */,
 				7BDB64FE18BE18A6006B3B02 /* Mining by Moonlight.mp3 in Resources */,
 				7BDB64BE18BCD1FD006B3B02 /* Images.xcassets in Resources */,
 				7BDB64FD18BE18A6006B3B02 /* Ka-Ching.wav in Resources */,
@@ -358,8 +362,8 @@
 				7BDB64F218BE0086006B3B02 /* RWTSwap.m in Sources */,
 				7BDB650218BE23A5006B3B02 /* RWTChain.m in Sources */,
 				7BDB64EF18BDE938006B3B02 /* RWTTile.m in Sources */,
-				7BDB64DE18BCD631006B3B02 /* RWTCookie.m in Sources */,
 				7BDB64AD18BCD1FD006B3B02 /* main.m in Sources */,
+				F323FE061B0EB623009D38BC /* RWTWord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

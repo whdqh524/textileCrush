@@ -1,13 +1,13 @@
 //
 //  RWTSwap.m
-//  CookieCrunch
+//  wordCrunch
 //
 //  Created by Matthijs on 26-02-14.
 //  Copyright (c) 2014 Razeware LLC. All rights reserved.
 //
 
 #import "RWTSwap.h"
-#import "RWTCookie.h"
+#import "RWTWord.h"
 
 @implementation RWTSwap
 
@@ -18,21 +18,21 @@
   // You can only compare this object against other RWTSwap objects.
   if (![object isKindOfClass:[RWTSwap class]]) return NO;
 
-  // Two swaps are equal if they contain the same cookie, but it doesn't
+  // Two swaps are equal if they contain the same word, but it doesn't
   // matter whether they're called A in one and B in the other.
   RWTSwap *other = (RWTSwap *)object;
-  return (other.cookieA == self.cookieA && other.cookieB == self.cookieB) ||
-         (other.cookieB == self.cookieA && other.cookieA == self.cookieB);
+  return (other.wordA == self.wordA && other.wordB == self.wordB) ||
+         (other.wordB == self.wordA && other.wordA == self.wordB);
 }
 
 // If you override isEqual: you also need to override hash. The rule is that
 // if two objects are equal, then their hashes must also be equal.
 - (NSUInteger)hash {
-  return [self.cookieA hash] ^ [self.cookieB hash];
+  return [self.wordA hash] ^ [self.wordB hash];
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"%@ swap %@ with %@", [super description], self.cookieA, self.cookieB];
+  return [NSString stringWithFormat:@"%@ swap %@ with %@", [super description], self.wordA, self.wordB];
 }
 
 @end

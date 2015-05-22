@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  CookieCrunch
+//  wordCrunch
 //
 //  Created by Matthijs on 25-02-14.
 //  Copyright (c) 2014 Razeware LLC. All rights reserved.
