@@ -8,13 +8,13 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-static const NSUInteger NumWordTypes = 6;
+static const NSUInteger NumWordTypes = 7;
 
 @interface RWTWord : NSObject
 
 @property (assign, nonatomic) NSInteger column;
 @property (assign, nonatomic) NSInteger row;
-@property (assign, nonatomic) NSUInteger wordType;  // 1 - 6
+@property (assign, nonatomic) NSUInteger wordType;  // 1 - 7
 @property (strong, nonatomic) SKLabelNode *sprite;
 
 - (NSString *)spriteName;

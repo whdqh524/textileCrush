@@ -18,6 +18,7 @@
     @"초록",
     @"파랑",
     @"보라",
+    @"하양",
   };
 
   return spriteNames[self.wordType - 1];
@@ -31,6 +32,7 @@
     @"초록-Highlighted",
     @"파랑-Highlighted",
     @"보라-Highlighted",
+    @"하양-Highlighted",
   };
 
   return highlightedSpriteNames[self.wordType - 1];
@@ -43,7 +45,8 @@
         @"ffff00",
         @"00ff00",
         @"00ffff",
-        @"ff66ff"
+        @"ff66ff",
+        @"ffffff"
     };
     NSString *hexString = wordColorHexCodes[arc4random_uniform(NumWordTypes)];
     
