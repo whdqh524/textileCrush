@@ -20,27 +20,24 @@
 // The scene draws the tiles and word sprites, and handles swipes.
 @property (strong, nonatomic) MyScene *scene;
 
-@property (assign, nonatomic) NSUInteger movesLeft;
+//@property (assign, nonatomic) NSUInteger movesLeft;
 @property (assign, nonatomic) NSUInteger score;
 @property (assign, nonatomic) NSUInteger time;
 
-@property (weak, nonatomic) IBOutlet UILabel *targetLabel;
-@property (weak, nonatomic) IBOutlet UILabel *movesLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *targetLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *movesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *shuffleButton;
+//@property (weak, nonatomic) IBOutlet UIButton *shuffleButton;
 @property (weak, nonatomic) IBOutlet UIImageView *gameOverPanel;
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
-
 @property (strong, nonatomic) AVAudioPlayer *backgroundMusic;
-
 @property (strong, nonatomic) NSTimer* timer;
 
 @end
 
 @implementation ViewController
-
 
 
 
@@ -127,7 +124,7 @@
 }
 
 - (void)beginGame {
-    self.movesLeft = self.level.maximumMoves;
+//    self.movesLeft = self.level.maximumMoves;
     self.score = 0;
     self.time = 60;
     [self updateLabels];
@@ -137,6 +134,7 @@
   [self shuffle];
 }
 
+
 - (void)shuffle {
   // Delete the old word sprites, but not the tiles.
   [self.scene removeAllWordSprites];
@@ -145,6 +143,7 @@
   NSSet *newWords = [self.level shuffle];
   [self.scene addSpritesForWords:newWords];
 }
+
 
 - (void)handleMatches {
   // This is the main loop that removes any matching words and fills up the
@@ -184,31 +183,34 @@
   }];
 }
 
+
 - (void)beginNextTurn {
   [self.level resetComboMultiplier];
   [self.level detectPossibleSwaps];
   self.view.userInteractionEnabled = YES;
-  [self decrementMoves];
+//  [self decrementMoves];
 }
 
+
 - (void)updateLabels {
-  self.targetLabel.text = [NSString stringWithFormat:@"%lu", (long)self.level.targetScore];
-  self.movesLabel.text = [NSString stringWithFormat:@"%lu", (long)self.movesLeft];
+//  self.targetLabel.text = [NSString stringWithFormat:@"%lu", (long)self.level.targetScore];
+//  self.movesLabel.text = [NSString stringWithFormat:@"%lu", (long)self.movesLeft];
   self.scoreLabel.text = [NSString stringWithFormat:@"%lu", (long)self.score];
     self.timeLabel.text = [NSString stringWithFormat:@"%lu", (long)self.time];
 }
 
-- (void)decrementMoves{
-  self.movesLeft--;
-  [self updateLabels];
 
-    if (self.score >= self.level.targetScore) {
-        self.gameOverPanel.image = [UIImage imageNamed:@"LevelComplete"];
-        [self showGameOver];
-    } else if (self.movesLeft == 0) {
-        self.gameOverPanel.image = [UIImage imageNamed:@"GameOver"];
-        [self showGameOver];
-    }
+- (void)decrementMoves{
+//  self.movesLeft--;
+//  [self updateLabels];
+//
+//    if (self.score >= self.level.targetScore) {
+//        self.gameOverPanel.image = [UIImage imageNamed:@"LevelComplete"];
+//        [self showGameOver];
+//    } else if (self.movesLeft == 0) {
+//        self.gameOverPanel.image = [UIImage imageNamed:@"GameOver"];
+//        [self showGameOver];
+//    }
 }
 
 
@@ -225,7 +227,6 @@
 }
 
 
-
 - (void)showGameOver {
   [self.scene animateGameOver];
 
@@ -235,8 +236,9 @@
   self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideGameOver)];
   [self.view addGestureRecognizer:self.tapGestureRecognizer];
 
-  self.shuffleButton.hidden = YES;
+//  self.shuffleButton.hidden = YES;
 }
+
 
 - (void)hideGameOver {
   [self.view removeGestureRecognizer:self.tapGestureRecognizer];
@@ -247,14 +249,14 @@
 
   [self beginGame];
 
-  self.shuffleButton.hidden = NO;
+//  self.shuffleButton.hidden = NO;
 }
+
 
 - (IBAction)shuffleButtonPressed:(id)sender {
   [self shuffle];
-
   // Pressing the shuffle button costs a move.
-  [self decrementMoves];
+//  [self decrementMoves];
 }
 
 @end
